@@ -33,13 +33,17 @@ Certifique-se de ter o seguinte instalado:
    pip install -r requirements.txt
    
 3. **Gerar build do docker image e processsar ela**:
+
+   ```sh
    docker build --platform linux/amd64 -t docker-image:test .
- 
+   
    docker run --platform linux/amd64 -d -v "$HOME\.aws-lambda-rie:/aws-lambda" -p 9000:8080 --entrypoint /aws-lambda/aws-lambda-rie docker-image:test /usr/local/bin/python -m awslambdaric lambda_function.handler
 
    Invoke-WebRequest -Uri "http://localhost:9000/2015-03-31/functions/function/invocations" -Method Post -Body '{}' -ContentType "application/json"
 
-4. **Após executar, excluir a docker image:
+5. **Após executar, excluir a docker image:
+
+   ```sh
    docker ps
 
    docker kill [NÚMERO QUE ENCONTRAR COM O DOCKER PS]
