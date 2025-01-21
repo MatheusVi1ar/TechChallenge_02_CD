@@ -2,19 +2,19 @@ import os
 import boto3
 
 def enviar_parquet_s3(parquet_buffer, datenow, access_key, secret_key, session_token): 
-    # Upload Parquet file to S3
-#    os.environ['AWS_ACCESS_KEY_ID'] = access_key
-#    os.environ['AWS_SECRET_ACCESS_KEY'] = secret_key
-#    os.environ['AWS_SESSION_TOKEN'] = session_token
+    # Upload Parquet file to S3 |#Comentar para publicar
+    os.environ['AWS_ACCESS_KEY_ID'] = access_key
+    os.environ['AWS_SECRET_ACCESS_KEY'] = secret_key
+    os.environ['AWS_SESSION_TOKEN'] = session_token
+    #Comentar para publicar
+    session = boto3.Session(
+        aws_access_key_id=os.environ["AWS_ACCESS_KEY_ID"],
+        aws_secret_access_key=os.environ["AWS_SECRET_ACCESS_KEY"],
+        aws_session_token=os.environ["AWS_SESSION_TOKEN"],
+   )
 
-#    session = boto3.Session(
-#        aws_access_key_id=os.environ["AWS_ACCESS_KEY_ID"],
-#        aws_secret_access_key=os.environ["AWS_SECRET_ACCESS_KEY"],
-#        aws_session_token=os.environ["AWS_SESSION_TOKEN"],
-#   )
-
-#    s3_client = session.client('s3')
-    s3_client = boto3.client('s3')
+    s3_client = session.client('s3')#Comentar para publicar
+#    s3_client = boto3.client('s3') #Descomentar para publicar
 
     bucket_name = 'fiap-bucket-s3'
     s3_file_name = 'raw/b3_{}.parquet'.format(datenow)
